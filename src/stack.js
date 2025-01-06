@@ -1,4 +1,6 @@
-const { NotImplementedError } = require('../extensions/index.js');
+const {
+  NotImplementedError
+} = require('../extensions/index.js');
 
 /**
  * Implement the Stack with a given interface via array.
@@ -13,19 +15,39 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 class Stack {
-  push(/* element */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  constructor() {
+    this.items = []; // Initialize an empty array to hold stack elements
   }
 
+  // Adds an element to the top of the stack
+  push(element) {
+    this.items.push(element);
+  }
+
+  // Removes and returns the top element of the stack
   pop() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    if (this.isEmpty()) {
+      return undefined; // Return undefined if the stack is empty
+    }
+    return this.items.pop(); // Remove and return the last element from the array
   }
 
+  // Returns the top element of the stack without removing it
   peek() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    if (this.isEmpty()) {
+      return undefined; // Return undefined if the stack is empty
+    }
+    return this.items[this.items.length - 1]; // Return the last element of the array
+  }
+
+  // Checks if the stack is empty
+  isEmpty() {
+    return this.items.length === 0; // Return true if there are no elements
+  }
+
+  // Optional: Returns the size of the stack
+  size() {
+    return this.items.length; // Return the number of elements in the stack
   }
 }
 
