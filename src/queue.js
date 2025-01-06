@@ -15,21 +15,44 @@ const {
  * queue.dequeue(); // returns the top element from queue and deletes it, returns 1
  * queue.getUnderlyingList() // returns { value: 3, next: null }
  */
-class Queue {
+class ListNode {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
 
-  getUnderlyingList() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+class Queue {
+  constructor() {
+    this.head = null; // Points to the first node
+    this.tail = null; // Points to the last node
   }
 
-  enqueue( /* value */ ) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  enqueue(value) {
+    const newNode = new ListNode(value);
+    if (this.tail) {
+      this.tail.next = newNode;
+    }
+    this.tail = newNode;
+    if (!this.head) {
+      this.head = newNode; // If the queue was empty, head should also point to the first node
+    }
   }
 
   dequeue() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    if (!this.head) {
+      return null; // Queue is empty
+    }
+    const dequeuedValue = this.head.value;
+    this.head = this.head.next; // Move head to the next node
+    if (!this.head) {
+      this.tail = null; // If the queue is now empty, set tail to null as well
+    }
+    return dequeuedValue;
+  }
+
+  getUnderlyingList() {
+    return this.head; // Return the head of the linked list
   }
 }
 
